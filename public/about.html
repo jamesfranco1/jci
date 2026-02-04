@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - JCI</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #eff6ff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #1d4ed8;
+            --border-subtle: rgba(15, 23, 42, 0.08);
+            --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        h1 {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        h1 .accent {
+            color: var(--accent-primary);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        nav {
+            margin-top: 24px;
+        }
+
+        nav a {
+            display: inline-block;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background: #dbeafe;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        ul {
+            color: var(--text-secondary);
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .data-source {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .data-source h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .data-source p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .data-source a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .data-source a:hover {
+            text-decoration: underline;
+        }
+
+        .methodology {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .methodology h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .methodology ol {
+            color: var(--text-secondary);
+            margin-left: 24px;
+        }
+
+        .methodology li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .version {
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 8px;">
+                <img src="logo.png" alt="JCI" style="width: 56px; height: 56px; border-radius: 10px;">
+                <div>
+                    <h1>JEW<span class="accent">CONCENTRATION</span> INDEX</h1>
+                    <p class="subtitle">Population Concentration Analysis Tool</p>
+                </div>
+            </div>
+            <nav>
+                <a href="index.html">← Back to Map</a>
+            </nav>
+        </header>
+
+        <section>
+            <h2>About This Project</h2>
+            <p>
+                The Jew Concentration Index (JCI) is a geographic visualization tool that maps Jewish population 
+                density across the United States using publicly available data sources. The project aggregates 
+                multiple datasets to provide insights into demographic patterns and community distribution.
+            </p>
+        </section>
+
+        <section>
+            <h2>Data Sources</h2>
+            
+            <div class="data-source">
+                <h3>Voter Registration Records</h3>
+                <p>
+                    Surname-based population estimates are derived from state voter registration files, 
+                    which are public records available through each state's Secretary of State or Board of Elections. 
+                    States like Florida, North Carolina, Ohio, and Pennsylvania provide these files for research purposes.
+                </p>
+            </div>
+
+            <div class="data-source">
+                <h3>Synagogues & Places of Worship</h3>
+                <p>
+                    Religious institution locations are sourced from <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>, 
+                    a collaborative mapping project with global coverage. Data is fetched via the Overpass API.
+                </p>
+            </div>
+
+            <div class="data-source">
+                <h3>Jewish Community Centers & Schools</h3>
+                <p>
+                    JCC locations and Jewish day school data are compiled from public directories 
+                    and organizational listings.
+                </p>
+            </div>
+
+            <div class="data-source">
+                <h3>Chabad Houses</h3>
+                <p>
+                    Chabad-Lubavitch center locations are sourced from public Chabad directories and mapping services.
+                </p>
+            </div>
+
+            <div class="data-source">
+                <h3>Billionaire Residences</h3>
+                <p>
+                    Billionaire location data is compiled from Forbes 400 listings and publicly reported residence information.
+                </p>
+            </div>
+
+            <div class="data-source">
+                <h3>Political Donor Data</h3>
+                <p>
+                    AIPAC and political donor information is sourced from Federal Election Commission (FEC) filings, 
+                    which are public records available at <a href="https://www.fec.gov" target="_blank">fec.gov</a>.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Methodology</h2>
+            <p>
+                The surname analysis uses established research on Jewish surname frequency. Names like Cohen, Levy, 
+                Goldberg, and Shapiro have been identified in academic studies as having high probability of 
+                Jewish heritage. Each surname is assigned a probability weight based on historical census data 
+                and genealogical research.
+            </p>
+
+            <div class="methodology">
+                <h3>Data Processing Pipeline</h3>
+                <ol>
+                    <li>Voter registration records are filtered by target surnames</li>
+                    <li>Addresses are geocoded to latitude/longitude coordinates</li>
+                    <li>Points are aggregated into ~500m grid cells to protect individual privacy</li>
+                    <li>Original address data is discarded after cell assignment</li>
+                    <li>Only cell-level density counts are stored and displayed</li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>Privacy Considerations</h2>
+            <p>
+                All individual-level data is aggregated to grid cells before visualization. 
+                No specific addresses or identifiable information is stored or displayed on the map. 
+                The minimum cell size ensures that individual households cannot be identified.
+            </p>
+            <p>
+                Source data consists entirely of public records that are legally available for research 
+                and analytical purposes.
+            </p>
+        </section>
+
+        <section>
+            <h2>Covered Regions</h2>
+            <p>Currently, the index covers the following East Coast states:</p>
+            <ul>
+                <li>Florida</li>
+                <li>Georgia</li>
+                <li>South Carolina</li>
+                <li>North Carolina</li>
+                <li>Virginia</li>
+                <li>Maryland</li>
+                <li>Delaware</li>
+                <li>Pennsylvania</li>
+                <li>New Jersey</li>
+                <li>New York</li>
+                <li>Connecticut</li>
+                <li>Massachusetts</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Data is provided for research and educational purposes only.</p>
+            <p class="version">v0.2.0</p>
+        </footer>
+    </div>
+</body>
+</html>
+
