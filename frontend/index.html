@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jew Concentration Index</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <h1>JEW<span class="accent">CONCENTRATION</span> INDEX</h1>
+                <p class="subtitle">Population Concentration Analysis</p>
+            </div>
+
+            <!-- Search -->
+            <div class="sidebar-section">
+                <label class="section-label">LOCATION SEARCH</label>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Address, ZIP, or city...">
+                    <button id="search-btn" aria-label="Search">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Surname Selection -->
+            <div class="sidebar-section">
+                <label class="section-label">SURNAMES (select multiple)</label>
+                <div class="surname-grid" id="surname-grid">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="surname-actions">
+                    <button class="btn-small" id="select-all-surnames">All</button>
+                    <button class="btn-small" id="select-none-surnames">None</button>
+                </div>
+            </div>
+
+            <!-- Institution Layers -->
+            <div class="sidebar-section">
+                <label class="section-label">INSTITUTIONS</label>
+                
+                <div class="layer-group">
+                    <div class="layer-toggle">
+                        <input type="checkbox" id="layer-synagogues" checked>
+                        <label for="layer-synagogues">
+                            <span class="layer-icon synagogue"></span>
+                            Synagogues
+                        </label>
+                    </div>
+                    <div class="layer-meta">From OpenStreetMap</div>
+                </div>
+
+                <div class="layer-group">
+                    <div class="layer-toggle">
+                        <input type="checkbox" id="layer-schools">
+                        <label for="layer-schools">
+                            <span class="layer-icon school"></span>
+                            Jewish Day Schools
+                        </label>
+                    </div>
+                    <div class="layer-meta">Yeshivas & day schools</div>
+                </div>
+
+                <div class="layer-group">
+                    <div class="layer-toggle">
+                        <input type="checkbox" id="layer-chabad">
+                        <label for="layer-chabad">
+                            <span class="layer-icon chabad"></span>
+                            Chabad Houses
+                        </label>
+                    </div>
+                    <div class="layer-meta">Chabad-Lubavitch centers</div>
+                </div>
+
+                <div class="layer-group">
+                    <div class="layer-toggle">
+                        <input type="checkbox" id="layer-jcc">
+                        <label for="layer-jcc">
+                            <span class="layer-icon jcc"></span>
+                            JCCs
+                        </label>
+                    </div>
+                    <div class="layer-meta">Jewish Community Centers</div>
+                </div>
+            </div>
+
+            <!-- Other Layers -->
+            <div class="sidebar-section">
+                <label class="section-label">OTHER DATA</label>
+
+                <div class="layer-group">
+                    <div class="layer-toggle">
+                        <input type="checkbox" id="layer-billionaires">
+                        <label for="layer-billionaires">
+                            <span class="layer-icon billionaire"></span>
+                            Billionaires
+                        </label>
+                    </div>
+                    <div class="layer-meta">Forbes 400 (real data)</div>
+                </div>
+
+                <div class="layer-group">
+                    <div class="layer-toggle">
+                        <input type="checkbox" id="layer-aipac">
+                        <label for="layer-aipac">
+                            <span class="layer-icon aipac"></span>
+                            AIPAC Donors
+                        </label>
+                    </div>
+                    <div class="layer-meta">FEC records (real data)</div>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="sidebar-section">
+                <label class="section-label">LEGEND</label>
+
+                <div class="legend-points" id="legend-points">
+                    <div class="legend-point">
+                        <span class="point-marker surname-dot"></span>
+                        <span>Surname record</span>
+                    </div>
+                    <div class="legend-point">
+                        <span class="point-marker synagogue"></span>
+                        <span>Synagogue</span>
+                    </div>
+                    <div class="legend-point" id="legend-schools" style="display: none;">
+                        <span class="point-marker school"></span>
+                        <span>Day School</span>
+                    </div>
+                    <div class="legend-point" id="legend-chabad" style="display: none;">
+                        <span class="point-marker chabad"></span>
+                        <span>Chabad House</span>
+                    </div>
+                    <div class="legend-point" id="legend-jcc" style="display: none;">
+                        <span class="point-marker jcc"></span>
+                        <span>JCC</span>
+                    </div>
+                    <div class="legend-point" id="legend-billionaires" style="display: none;">
+                        <span class="point-marker billionaire"></span>
+                        <span>Billionaire</span>
+                    </div>
+                    <div class="legend-point" id="legend-aipac" style="display: none;">
+                        <span class="point-marker aipac"></span>
+                        <span>AIPAC Donor</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="sidebar-section stats-section">
+                <label class="section-label">STATISTICS</label>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-synagogues">--</span>
+                        <span class="stat-label">Synagogues</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-records">--</span>
+                        <span class="stat-label">Records</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-billionaires">38</span>
+                        <span class="stat-label">Billionaires</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-aipac">40</span>
+                        <span class="stat-label">AIPAC Donors</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="sidebar-footer">
+                <p>Data aggregated at cell level. No individual locations stored.</p>
+                <p class="version">v0.2.0 · East Coast</p>
+            </div>
+        </aside>
+
+        <!-- Map -->
+        <main id="map-container">
+            <div id="map"></div>
+            
+            <!-- Tooltip -->
+            <div id="tooltip" class="tooltip">
+                <div class="tooltip-content"></div>
+            </div>
+
+            <!-- Loading overlay -->
+            <div id="loading" class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <span>Loading data...</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="data.js"></script>
+    <script src="map.js"></script>
+</body>
+</html>
