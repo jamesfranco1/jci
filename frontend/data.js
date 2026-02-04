@@ -62,7 +62,7 @@ const POPULATION_CLUSTERS = [
     { id: 'syracuse', center: [43.048, -76.148], spreadKm: 1.7, baseCount: 55, intensity: 0.35, nodeCount: 4 },
     { id: 'rochester', center: [43.156, -77.608], spreadKm: 1.8, baseCount: 70, intensity: 0.4, nodeCount: 4 },
     { id: 'buffalo', center: [42.886, -78.878], spreadKm: 1.8, baseCount: 60, intensity: 0.35, nodeCount: 4 },
-
+    
     // ============ PENNSYLVANIA ============
     { id: 'philly', center: [39.952, -75.165], spreadKm: 2.6, baseCount: 170, intensity: 0.75, nodeCount: 7 },
     { id: 'montgomery', center: [40.150, -75.250], spreadKm: 2.8, baseCount: 140, intensity: 0.7, nodeCount: 6 },
@@ -75,7 +75,7 @@ const POPULATION_CLUSTERS = [
     { id: 'dc-core', center: [38.907, -77.037], spreadKm: 2.6, baseCount: 160, intensity: 0.7, nodeCount: 6 },
     { id: 'dc-suburbs', center: [39.050, -77.120], spreadKm: 3.0, baseCount: 170, intensity: 0.7, nodeCount: 7 },
     { id: 'baltimore', center: [39.290, -76.612], spreadKm: 2.2, baseCount: 150, intensity: 0.75, nodeCount: 6 },
-
+    
     // ============ FLORIDA ============
     { id: 'miami-beach', center: [25.790, -80.130], spreadKm: 1.8, baseCount: 120, intensity: 0.9, nodeCount: 5 },
     { id: 'miami', center: [25.761, -80.191], spreadKm: 2.5, baseCount: 140, intensity: 0.7, nodeCount: 6 },
@@ -87,7 +87,7 @@ const POPULATION_CLUSTERS = [
     { id: 'orlando', center: [28.538, -81.379], spreadKm: 2.3, baseCount: 80, intensity: 0.4, nodeCount: 4 },
     { id: 'tampa', center: [27.950, -82.457], spreadKm: 2.1, baseCount: 70, intensity: 0.35, nodeCount: 4 },
     { id: 'jacksonville', center: [30.332, -81.655], spreadKm: 2.0, baseCount: 60, intensity: 0.3, nodeCount: 3 },
-
+    
     // ============ MASSACHUSETTS ============
     { id: 'boston', center: [42.360, -71.058], spreadKm: 2.0, baseCount: 130, intensity: 0.6, nodeCount: 6 },
     { id: 'brookline', center: [42.331, -71.121], spreadKm: 1.6, baseCount: 120, intensity: 0.8, nodeCount: 5 },
@@ -227,19 +227,11 @@ function rebuildLandNodes() {
 }
 
 async function loadLandMask() {
-    try {
-        const response = await fetch('landmask.geojson', { cache: 'force-cache' });
-        if (!response.ok) throw new Error(`Failed to load land mask: ${response.status}`);
-        const geojson = await response.json();
-        LAND_MASK_INDEX = buildLandMaskIndex(geojson);
-        rebuildLandNodes();
-        return geojson;
-    } catch (error) {
-        console.warn('Land mask not available, falling back to heuristic exclusion.', error);
-        LAND_MASK_INDEX = [];
-        rebuildLandNodes();
-        return null;
-    }
+    // Disabled: land mask was too large and froze the browser.
+    // Using simple water exclusion zones instead.
+    console.log('Land mask disabled, using water exclusion zones.');
+    LAND_MASK_INDEX = [];
+    return null;
 }
 
 function sampleClusterPoint(cluster, maxAttempts = 20) {
@@ -317,7 +309,7 @@ rebuildLandNodes();
 // Generate points from cells
 function generateSurnamePointsData() {
     const data = {};
-
+    
     for (const surname of TOP_SURNAMES) {
         const features = [];
         const spatialHash = new Map();
@@ -341,7 +333,7 @@ function generateSurnamePointsData() {
 
                 if (!point) continue;
                 const { lat, lng } = point;
-
+                
                 features.push({
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: [lng, lat] },
@@ -349,21 +341,21 @@ function generateSurnamePointsData() {
                 });
             }
         }
-
+        
         data[surname.name] = { type: 'FeatureCollection', features };
     }
-
+    
     return data;
 }
 
 // Combined data for all surnames
 function generateGridData(selectedSurnames = null) {
     const features = [];
-    const surnames = selectedSurnames?.length > 0
+    const surnames = selectedSurnames?.length > 0 
         ? TOP_SURNAMES.filter(s => selectedSurnames.includes(s.name))
         : TOP_SURNAMES;
     const spatialHash = new Map();
-
+    
     for (const cluster of POPULATION_CLUSTERS) {
         for (const surname of surnames) {
             const weight = cluster.intensity * surname.weight;
@@ -384,7 +376,7 @@ function generateGridData(selectedSurnames = null) {
 
                 if (!point) continue;
                 const { lat, lng } = point;
-
+                
                 features.push({
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: [lng, lat] },
@@ -393,7 +385,7 @@ function generateGridData(selectedSurnames = null) {
             }
         }
     }
-
+    
     return { type: 'FeatureCollection', features };
 }
 
