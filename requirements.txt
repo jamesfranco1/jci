@@ -1,24 +1,9 @@
-# Proxy Map - Python Dependencies
+# JCI - Python Dependencies (Vercel-optimized)
 
-# Backend API
+# API only - minimal dependencies
 fastapi>=0.109.0
-uvicorn[standard]>=0.27.0
 pydantic>=2.5.0
 
-# Data Processing (for voter file processing)
-pandas>=2.1.0
-geopandas>=0.14.0
-shapely>=2.0.0
-
-# Geocoding
-geopy>=2.4.0
-requests>=2.31.0
-
-# Database (optional - for production)
-# sqlalchemy>=2.0.0
-# asyncpg>=0.29.0  # PostgreSQL
-# aiosqlite>=0.19.0  # SQLite async
-
-# Development
-python-dotenv>=1.0.0
+# Optional: uncomment for local development with uvicorn
+# uvicorn[standard]>=0.27.0
 
