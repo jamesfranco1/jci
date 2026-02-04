@@ -3,24 +3,18 @@
 // Simulates geocoded voter data in ~500m cells
 // ============================================
 
-// Top 10 surnames with distinct colors
+// Top 10 surnames
 const TOP_SURNAMES = [
-    { name: 'Cohen', weight: 0.95, color: '#dc2626' },      // Red
-    { name: 'Levy', weight: 0.92, color: '#ea580c' },       // Orange
-    { name: 'Goldberg', weight: 0.92, color: '#ca8a04' },  // Yellow/Amber
-    { name: 'Goldstein', weight: 0.92, color: '#16a34a' }, // Green
-    { name: 'Rosenberg', weight: 0.90, color: '#0891b2' },  // Cyan
-    { name: 'Friedman', weight: 0.85, color: '#2563eb' },  // Blue
-    { name: 'Shapiro', weight: 0.90, color: '#7c3aed' },    // Purple
-    { name: 'Bernstein', weight: 0.90, color: '#c026d3' },  // Fuchsia
-    { name: 'Weinstein', weight: 0.90, color: '#db2777' }   // Pink
+    { name: 'Cohen', weight: 0.95 },
+    { name: 'Levy', weight: 0.92 },
+    { name: 'Goldberg', weight: 0.92 },
+    { name: 'Goldstein', weight: 0.92 },
+    { name: 'Rosenberg', weight: 0.90 },
+    { name: 'Friedman', weight: 0.85 },
+    { name: 'Shapiro', weight: 0.90 },
+    { name: 'Bernstein', weight: 0.90 },
+    { name: 'Weinstein', weight: 0.90 }
 ];
-
-// Color mapping function
-function getSurnameColor(surnameName) {
-    const surname = TOP_SURNAMES.find(s => s.name === surnameName);
-    return surname?.color || '#1d4ed8'; // Default blue fallback
-}
 
 // ============================================
 // CLUSTERED POPULATION MODEL
@@ -351,10 +345,7 @@ function generateSurnamePointsData() {
                 features.push({
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: [lng, lat] },
-                    properties: { 
-                        surname: surname.name,
-                        color: surname.color
-                    }
+                    properties: { surname: surname.name }
                 });
             }
         }
@@ -397,10 +388,7 @@ function generateGridData(selectedSurnames = null) {
                 features.push({
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: [lng, lat] },
-                    properties: { 
-                        surname: surname.name,
-                        color: surname.color
-                    }
+                    properties: { surname: surname.name }
                 });
             }
         }
@@ -523,6 +511,5 @@ window.DATA = {
     generateJCCGeoJSON,
     generateAIPACGeoJSON,
     formatDonation,
-    loadLandMask,
-    getSurnameColor
+    loadLandMask
 };

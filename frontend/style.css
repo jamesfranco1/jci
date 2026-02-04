@@ -231,11 +231,11 @@ body {
 }
 
 .layer-icon.synagogue {
-    background: #1d4ed8;
+    background: #7c3aed;
 }
 
 .layer-icon.heatmap {
-    background: #3b82f6;
+    background: #1e40af;
 }
 
 .layer-icon.choropleth {
@@ -245,25 +245,24 @@ body {
 }
 
 .layer-icon.billionaire {
-    background: #0ea5e9;
+    background: #ca8a04;
 }
 
 .layer-icon.school {
-    background: #3b82f6;
+    background: #0d9488;
 }
 
 .layer-icon.chabad {
-    background: #60a5fa;
+    background: #ea580c;
 }
 
 .layer-icon.jcc {
-    background: #2563eb;
+    background: #0284c7;
 }
 
 .layer-icon.aipac {
-    background: #38bdf8;
+    background: #dc2626;
     box-shadow: none;
-    border: 1px solid rgba(15, 23, 42, 0.12);
 }
 
 .layer-meta {
@@ -452,33 +451,32 @@ body {
 }
 
 .point-marker.synagogue {
-    background: #1d4ed8;
+    background: #7c3aed;
 }
 
 .point-marker.billionaire {
-    background: #0ea5e9;
+    background: #ca8a04;
 }
 
 .point-marker.school {
-    background: #3b82f6;
+    background: #0d9488;
 }
 
 .point-marker.chabad {
-    background: #60a5fa;
+    background: #ea580c;
 }
 
 .point-marker.jcc {
-    background: #2563eb;
+    background: #0284c7;
 }
 
 .point-marker.aipac {
-    background: #38bdf8;
+    background: #dc2626;
     box-shadow: none;
-    border: 1px solid rgba(15, 23, 42, 0.12);
 }
 
 .point-marker.surname-dot {
-    background: #1d4ed8;
+    background: #1e40af;
     box-shadow: none;
 }
 

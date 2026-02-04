@@ -182,17 +182,14 @@ class ProxyMap {
                     14, 3,
                     16, 4
                 ],
-                'circle-color': ['get', 'color', ['literal', '#1d4ed8']],
+                'circle-color': '#1e40af',
                 'circle-opacity': [
                     'interpolate', ['linear'], ['zoom'],
                     4, 0,
                     7, 0.4,
                     10, 0.8,
                     12, 0.95
-                ],
-                'circle-stroke-width': 0.5,
-                'circle-stroke-color': '#ffffff',
-                'circle-stroke-opacity': 0.3
+                ]
             }
         });
     }
@@ -204,8 +201,8 @@ class ProxyMap {
             source: 'synagogues-data',
             paint: {
                 'circle-radius': ['interpolate', ['linear'], ['zoom'], 5, 2, 10, 3.5, 15, 5],
-                'circle-color': '#1d4ed8',
-                'circle-opacity': 0.9,
+                'circle-color': '#7c3aed',
+                'circle-opacity': 0.85,
                 'circle-stroke-width': 0
             },
             layout: { visibility: 'visible' }
@@ -219,8 +216,8 @@ class ProxyMap {
             source: 'schools-data',
             paint: {
                 'circle-radius': ['interpolate', ['linear'], ['zoom'], 5, 2.5, 10, 4, 15, 6],
-                'circle-color': '#3b82f6',
-                'circle-opacity': 0.9,
+                'circle-color': '#0d9488',
+                'circle-opacity': 0.85,
                 'circle-stroke-width': 0
             },
             layout: { visibility: 'none' }
@@ -234,8 +231,8 @@ class ProxyMap {
             source: 'chabad-data',
             paint: {
                 'circle-radius': ['interpolate', ['linear'], ['zoom'], 5, 2.5, 10, 4, 15, 6],
-                'circle-color': '#60a5fa',
-                'circle-opacity': 0.9,
+                'circle-color': '#ea580c',
+                'circle-opacity': 0.85,
                 'circle-stroke-width': 0
             },
             layout: { visibility: 'none' }
@@ -249,8 +246,8 @@ class ProxyMap {
             source: 'jcc-data',
             paint: {
                 'circle-radius': ['interpolate', ['linear'], ['zoom'], 5, 3, 10, 5, 15, 7],
-                'circle-color': '#2563eb',
-                'circle-opacity': 0.9,
+                'circle-color': '#0284c7',
+                'circle-opacity': 0.85,
                 'circle-stroke-width': 0
             },
             layout: { visibility: 'none' }
@@ -264,8 +261,8 @@ class ProxyMap {
             source: 'billionaires-data',
             paint: {
                 'circle-radius': ['interpolate', ['linear'], ['get', 'netWorth'], 5, 3, 50, 6, 180, 9],
-                'circle-color': '#0ea5e9',
-                'circle-opacity': 0.9,
+                'circle-color': '#ca8a04',
+                'circle-opacity': 0.85,
                 'circle-stroke-width': 0
             },
             layout: { visibility: 'none' }
@@ -279,8 +276,8 @@ class ProxyMap {
             source: 'aipac-data',
             paint: {
                 'circle-radius': ['interpolate', ['linear'], ['get', 'amount'], 100000, 3, 1000000, 5, 10000000, 8, 100000000, 12],
-                'circle-color': '#38bdf8',
-                'circle-opacity': 0.9,
+                'circle-color': '#dc2626',
+                'circle-opacity': 0.85,
                 'circle-stroke-width': 0
             },
             layout: { visibility: 'none' }
@@ -342,7 +339,6 @@ class ProxyMap {
             label.className = 'surname-checkbox active';
             label.innerHTML = `
                 <input type="checkbox" value="${surname.name}" checked>
-                <span class="color-dot" style="background-color: ${surname.color}"></span>
                 <span class="surname-name">${surname.name}</span>
             `;
             
